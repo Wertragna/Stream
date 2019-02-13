@@ -25,16 +25,6 @@ public class App {
         return names.stream().map(String::toUpperCase).sorted(Comparator.reverseOrder()).collect(Collectors.toList());
     }
 
-    public static void task3(String... numbers) {
-        Arrays.asList(numbers)
-                .stream()
-                .flatMap(a -> Arrays
-                        .asList(a.split(","))
-                        .stream())
-                .forEach(System.out::println);
-    }
-
-
     public static Stream<Long> task4() {
         long seed = 7, a = 25214903917l, c = 11, m = (long) Math.pow(2, 48);
         return Stream.iterate(seed, x -> (a * x + c) % m);
@@ -52,6 +42,15 @@ public class App {
             }
         }
         return list.stream();
+    }
+
+    public List<Integer> task3(String... numbers) {
+        return Arrays.asList(numbers)
+                .stream()
+                .flatMap(a -> Arrays
+                        .asList(a.split(","))
+                        .stream()).map(a -> Integer.parseInt(a))
+                .collect(Collectors.toList());
     }
 
 }
